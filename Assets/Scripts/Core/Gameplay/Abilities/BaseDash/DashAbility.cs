@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DashAbility : MonoBehaviour
 {
+
+    public Action<int> OnDashPerformed; // int -> remaining dashes (after consuming)
+    public Action<int> OnDashRestored;  // int -> remaining dasges (after restoring)
 
     private BaseCharacterController _charController;
     private LocalPlayerGameplayInputHandler _inputHandler;
@@ -18,8 +22,9 @@ public class DashAbility : MonoBehaviour
 
 
     // Cooldown
-    [SerializeField] private int _maxDashes = 3;
+    public int CurrentAvailableDashes { get => _currentAvailableDashes; }
     private int _currentAvailableDashes;
+    [SerializeField] private int _maxDashes = 3;
     [SerializeField] private float _dashRechargeTime = 2;
     private float _dashRechargeTimer;
 
@@ -67,6 +72,8 @@ public class DashAbility : MonoBehaviour
         _currentAvailableDashes--;
         _dashCooldownTimer = _dashTime;
 
+        OnDashPerformed?.Invoke(_currentAvailableDashes);
+
     }
 
     private void RechargeTimerUpdate()
@@ -80,6 +87,7 @@ public class DashAbility : MonoBehaviour
         if(_dashRechargeTimer >= _dashRechargeTime)
         {
             _currentAvailableDashes++;
+            OnDashRestored?.Invoke(_currentAvailableDashes);
 
             if (_currentAvailableDashes == _maxDashes)
                 _dashRechargeTimer = 0;

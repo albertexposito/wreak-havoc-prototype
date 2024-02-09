@@ -16,6 +16,12 @@ public class PlayerCharacterUI : MonoBehaviour
     [SerializeField] private Transform _livesContainer;
     private Image[] _remainingLives;
 
+    [Header("Dashes")]
+    [SerializeField] private Transform _dashContainer;
+    private Image[] _remainingDashes;
+    [SerializeField] private Color _dashAvailableColor;
+    [SerializeField] private Color _dashUnavailableColor;
+
     public void SetPlayer(Player player)
     {
 
@@ -28,6 +34,7 @@ public class PlayerCharacterUI : MonoBehaviour
         SetupHealthBar();
 
         SetupLivesContainer(player);
+        SetupDashContainer();
 
         gameObject.SetActive(true);
 
@@ -42,6 +49,7 @@ public class PlayerCharacterUI : MonoBehaviour
         foreach (Image life in _remainingLives)
             life.color = lifeColor;
 
+        UpdateLivesContainer(player.CurrentLives);
         player.OnLivesChange += UpdateLivesContainer;
     }
 
@@ -51,9 +59,14 @@ public class PlayerCharacterUI : MonoBehaviour
         UpdateHealthBar(_character.HealthHandler.CurrentHealth, _character.HealthHandler.MaxHealth);
     }
 
-    public void HidePlayerUI()
+    private void SetupDashContainer()
     {
-        gameObject.SetActive(false);
+        _remainingDashes = _dashContainer.GetComponentsInChildren<Image>();
+
+        _character.DashAbility.OnDashPerformed += UpdateDashContainer;
+        _character.DashAbility.OnDashRestored += UpdateDashContainer;
+
+        UpdateDashContainer(_character.DashAbility.CurrentAvailableDashes);
     }
 
     private void UpdateHealthBar(int currentHP, int maxHP)
@@ -68,12 +81,29 @@ public class PlayerCharacterUI : MonoBehaviour
             _remainingLives[i].gameObject.SetActive( i <= remainingLives - 1 );
     }
 
+    private void UpdateDashContainer(int currentDashes)
+    {
+        for (int i = 0; i < _remainingLives.Length; i++)
+            _remainingDashes[i].color = (i <= currentDashes - 1 ? _dashAvailableColor : _dashUnavailableColor);
+    }
+
+    public void HidePlayerUI()
+    {
+        gameObject.SetActive(false);
+    }
+
     private void OnDestroy()
     {
         Debug.Log($"[PlayerCharacterUI][Destroy] - _character: {(_character == null ? "null" : "NOT null")} | _player: {(_player == null ? "null" : "NOT null")}");
 
         if (_character != null)
+        {
             _character.HealthHandler.OnHealthChanged.RemoveListener(UpdateHealthBar);
+
+            _character.DashAbility.OnDashPerformed -= UpdateDashContainer;
+            _character.DashAbility.OnDashRestored -= UpdateDashContainer;
+
+        }
         
         if(_player != null)
             _player.OnLivesChange -= UpdateLivesContainer;
