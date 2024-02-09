@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[RequireComponent(typeof(OnDamageableTriggerEnter))]
+[RequireComponent(typeof(OnDamageableTrigger))]
 [RequireComponent(typeof(Collider))]
 public class FirePit : MonoBehaviour
 {
@@ -16,13 +16,13 @@ public class FirePit : MonoBehaviour
 
     private bool _firePitEnabled;
     private Dictionary<DamageableElement, float> _elements;
-    private OnDamageableTriggerEnter _triggerEnter;
+    private OnDamageableTrigger _triggerEnter;
 
     private void Awake()
     {
         _elements = new Dictionary<DamageableElement, float>(4);
 
-        _triggerEnter = GetComponent<OnDamageableTriggerEnter>();
+        _triggerEnter = GetComponent<OnDamageableTrigger>();
 
         _triggerEnter.OnDamageableEnterTrigger.AddListener(OnDamageableEnter);
         _triggerEnter.OnDamageableExitTrigger.AddListener(OnDamageableExit);
@@ -35,9 +35,10 @@ public class FirePit : MonoBehaviour
     {
         if (_firePitEnabled)
         {
-            //foreach (DamageableElement damageable in _elements.Keys)
+            // Foreach element in the dictionary
             for(int i = _elements.Keys.Count - 1; i >= 0; i--)
             {
+
                 DamageableElement damageable = _elements.Keys.ElementAt(i);
                 _elements[damageable] -= Time.fixedDeltaTime;
 
@@ -72,7 +73,7 @@ public class FirePit : MonoBehaviour
     {
         Debug.Log($"[FirePit] - DamageableEnter, name: {damageable.gameObject.name}");
 
-        DealDamageToElement(damageable);
+        //DealDamageToElement(damageable);
         _elements.Add(damageable, _damageTime);
     }
     
