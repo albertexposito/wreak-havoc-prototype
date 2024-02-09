@@ -34,7 +34,16 @@ public class GameplayCameraHandler : MonoBehaviour
     private void OnPlayersSpawned(List<Player> players)
     {
         foreach (Player player in players)
+        {
             _targetGroup.AddMember(player.CurrentCharacter.transform, TARGET_GROUP_MEMBER_WEIGHT, TARGET_GROUP_MEMBER_RADIUS);
+            player.OnPlayerDied += OnPlayerDied;
+        }
+    }
+
+    private void OnPlayerDied(Player player)
+    {
+        // Remove the player from the camera group
+        _targetGroup.RemoveMember(player.CurrentCharacter.transform);
     }
 
     private void OnDestroy()

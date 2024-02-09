@@ -25,7 +25,6 @@ public class PlayerCharacterUI : MonoBehaviour
     public void SetPlayer(Player player)
     {
 
-
         _player = player;
         _character = player.CurrentCharacter;
 
@@ -49,8 +48,8 @@ public class PlayerCharacterUI : MonoBehaviour
         foreach (Image life in _remainingLives)
             life.color = lifeColor;
 
-        UpdateLivesContainer(player.CurrentLives);
-        player.OnLivesChange += UpdateLivesContainer;
+        UpdateLivesContainer(player.CurrentLives, player);
+        player.OnPlayerLivesChange += UpdateLivesContainer;
     }
 
     private void SetupHealthBar()
@@ -75,7 +74,7 @@ public class PlayerCharacterUI : MonoBehaviour
         _healthBarContainer.fillAmount = hpPercentage;
     }
 
-    private void UpdateLivesContainer(int remainingLives)
+    private void UpdateLivesContainer(int remainingLives, Player player)
     {
         for (int i = 0; i < _remainingLives.Length; i++)
             _remainingLives[i].gameObject.SetActive( i <= remainingLives - 1 );
@@ -106,7 +105,7 @@ public class PlayerCharacterUI : MonoBehaviour
         }
         
         if(_player != null)
-            _player.OnLivesChange -= UpdateLivesContainer;
+            _player.OnPlayerLivesChange -= UpdateLivesContainer;
         
     }
 }

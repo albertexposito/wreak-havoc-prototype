@@ -20,8 +20,10 @@ public class Player : MonoBehaviour
     public BasePlayerCharacter CurrentCharacter { get => _currentCharacter; }
     private BasePlayerCharacter _currentCharacter;
 
+
     public int CurrentLives { get => _lives; }
-    public event Action<int> OnLivesChange;
+    public event Action<Player> OnPlayerDied;
+    public event Action<int, Player> OnPlayerLivesChange;
     private int _lives;
     
 
@@ -50,12 +52,16 @@ public class Player : MonoBehaviour
     public void SetLives(int lives)
     {
         _lives = lives;
-        OnLivesChange?.Invoke(_lives);
+        OnPlayerLivesChange?.Invoke(_lives, this);
     }
     public void LoseLive()
     {
         _lives--;
-        OnLivesChange?.Invoke(_lives);
+        OnPlayerLivesChange?.Invoke(_lives, this);
+
+        if (_lives == 0)
+            OnPlayerDied?.Invoke(this);
+
     }
     #endregion
 
