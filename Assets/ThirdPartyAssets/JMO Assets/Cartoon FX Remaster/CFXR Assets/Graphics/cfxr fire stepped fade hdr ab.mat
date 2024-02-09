@@ -8,18 +8,16 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: cfxr fire stepped fade hdr ab
-  m_Shader: {fileID: -6465566751694194690, guid: 1a29b4d27eb8b04479ef89c00dea533d,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 1a29b4d27eb8b04479ef89c00dea533d, type: 3}
   m_ValidKeywords:
   - _ALPHABLEND_ON
   - _ALPHATEST_ON
   - _CFXR_EDGE_FADING
-  - _CFXR_HDR_BOOST
+  - _CFXR_LIGHTING_ALL
   - _CFXR_SINGLE_CHANNEL
   - _CFXR_UV_DISTORTION
   - _FADING_ON
   m_InvalidKeywords:
-  - _
   - _CFXR_DITHERED_SHADOWS_OFF
   - _CFXR_OVERLAYBLEND_RGBA
   - _CFXR_OVERLAYTEX_OFF
@@ -81,7 +79,7 @@ Material:
     - _DstBlend: 10
     - _EdgeFadePow: 2
     - _FadeAlongU: 1
-    - _HdrBoost: 1
+    - _HdrBoost: 0
     - _HdrMultiply: 8
     - _IndirectLightingMix: 0.5
     - _InvertDissolveTex: 0
@@ -105,7 +103,7 @@ Material:
     - _UseFB: 0
     - _UseFontColor: 0
     - _UseGradientMap: 0
-    - _UseLighting: 0
+    - _UseLighting: 3
     - _UseLightingWorldPosOffset: 0
     - _UseNormalMap: 0
     - _UseSP: 1

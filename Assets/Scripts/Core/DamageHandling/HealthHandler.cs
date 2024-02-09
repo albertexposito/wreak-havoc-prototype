@@ -11,7 +11,7 @@ public class HealthHandler : MonoBehaviour
     // Damage data of the killing hit
     public UnityEvent<DamageData> OnEntityDied;
 
-    public int IsCharacterDead;
+    public bool IsCharacterDead;
 
     public int MaxHealth { get => _maxHealth; }
     [SerializeField][Min(1)] private int _maxHealth;

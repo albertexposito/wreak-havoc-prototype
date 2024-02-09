@@ -40,4 +40,5 @@ public enum DamageType
 {
     MELEE = 0,
     RANGED = 1,
+    ENVIRONMENT = 2,
 }

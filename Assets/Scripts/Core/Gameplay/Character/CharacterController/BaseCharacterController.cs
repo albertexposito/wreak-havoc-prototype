@@ -106,9 +106,13 @@ public class BaseCharacterController : MonoBehaviour
 
     }
 
-    public void SetVelocity(Vector3 velocity)
+    public void SetVelocity(Vector3 velocity, bool overrideYVelocity = false)
     {
-        Vector3 finalVelocity = new Vector3(velocity.x, _rb.velocity.y, velocity.z);
+        Vector3 finalVelocity = new Vector3(
+            velocity.x,
+            (overrideYVelocity ? velocity.y : _rb.velocity.y),
+            velocity.z
+        );
 
         _rb.velocity = finalVelocity;
 
@@ -128,7 +132,8 @@ public class BaseCharacterController : MonoBehaviour
     public void DisableCharacterController()
     {
 
-        _collider.enabled = false;
+        _rb.detectCollisions = false;
+        //_collider.enabled = false;
 
         // Rigidbody speed variables
         ResetVelocity();
@@ -138,7 +143,9 @@ public class BaseCharacterController : MonoBehaviour
 
     public void EnableCharacterController()
     {
-        _collider.enabled = true;
+
+        //_collider.enabled = true;
+        _rb.detectCollisions = true;
 
         _rb.constraints = RigidbodyConstraints.FreezeRotation;
         _rb.WakeUp();
