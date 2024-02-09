@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class OnDamageableTriggerEnter : MonoBehaviour
+public class OnDamageableTrigger : MonoBehaviour
 {
 
     public UnityEvent<DamageableElement> OnDamageableEnterTrigger;
