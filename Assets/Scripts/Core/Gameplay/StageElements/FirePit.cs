@@ -54,14 +54,21 @@ public class FirePit : MonoBehaviour
 
     public void ActivateFirePit()
     {
+        Debug.Log($"[FirePit] - FirePit enabled!");
+
         _firePitEnabled = true;
 
+        _fireParticleSystem.gameObject.SetActive( true );
         _fireParticleSystem.Play();
         _collider.enabled = true;
     }
 
     public void DeactivateFirePit()
     {
+        Debug.LogError($"[FirePit] - Disabling FirePit! | _fireParticleSystem == null: {_fireParticleSystem == null} | _collider == null: {_collider == null} | _elements == null: {_elements == null}");
+        //Debug.Log($"[FirePit] - FirePit disabled!");
+
+
         _firePitEnabled = false;
 
         _fireParticleSystem.Stop();
