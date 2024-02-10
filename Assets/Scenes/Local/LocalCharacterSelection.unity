@@ -389,7 +389,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: EXIT GAME
+  m_text: OPEN SETTINGS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -479,7 +479,7 @@ GameObject:
   - component: {fileID: 1146430867}
   - component: {fileID: 1146430866}
   m_Layer: 5
-  m_Name: ExitGameButton
+  m_Name: OpenSettings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1100,7 +1100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startGameButton: {fileID: 2375393899840256061}
-  _exitGameButton: {fileID: 1146430866}
+  _openSettingsButton: {fileID: 1146430866}
 --- !u!224 &6420858704714115477
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1416,6 +1416,22 @@ PrefabInstance:
     - target: {fileID: 502593445483467971, guid: 08f64a8befe42a548a083ac47fb2129e, type: 3}
       propertyPath: m_Name
       value: --- PLAYER SLOT CONTAINER ---
+      objectReference: {fileID: 0}
+    - target: {fileID: 502593445483467972, guid: 08f64a8befe42a548a083ac47fb2129e, type: 3}
+      propertyPath: m_Color.a
+      value: 0.62352943
+      objectReference: {fileID: 0}
+    - target: {fileID: 502593445483467972, guid: 08f64a8befe42a548a083ac47fb2129e, type: 3}
+      propertyPath: m_Color.b
+      value: 0.2924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 502593445483467972, guid: 08f64a8befe42a548a083ac47fb2129e, type: 3}
+      propertyPath: m_Color.g
+      value: 0.2924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 502593445483467972, guid: 08f64a8befe42a548a083ac47fb2129e, type: 3}
+      propertyPath: m_Color.r
+      value: 0.2924528
       objectReference: {fileID: 0}
     - target: {fileID: 3758268691243617639, guid: 08f64a8befe42a548a083ac47fb2129e, type: 3}
       propertyPath: m_AnchorMax.y

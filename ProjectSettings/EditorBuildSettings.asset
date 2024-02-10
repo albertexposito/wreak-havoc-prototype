@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stages/Battlefield/Battlefield.unity
     guid: 78ed16472578f3c4487bc06c9cd62b08
+  - enabled: 1
+    path: Assets/Scenes/Global/SettingsPanel.unity
+    guid: 8e8b31841c2579a4898fb74cdd25efd9
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: cebf5dbf360a25541a041c9b02a37b32, type: 2}

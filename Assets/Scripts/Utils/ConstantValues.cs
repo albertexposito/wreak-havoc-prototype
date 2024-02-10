@@ -8,6 +8,8 @@ public static class ConstantValues
     public const string LOCAL_GAME_SETUP_SCENE_NAME = "LocalGameSetup";
     public const string LOCAL_GAME_RESULT_SCENE_NAME = "LocalResultScreen";
 
+    public const string QUALITY_SETTINGS_SCENE_NAME = "SettingsPanel";
+
     // Control Schemes
     public const string KEYBOARD_CONTROL_SCHEME = "Keyboard&Mouse";
     public const string GAMEPAD_CONTROL_SCHEME = "Gamepad";
