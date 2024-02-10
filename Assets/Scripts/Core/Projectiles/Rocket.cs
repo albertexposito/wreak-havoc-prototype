@@ -46,18 +46,14 @@ public class Rocket : BaseProjectileLogic
 
         _rb = rb;
 
-        _rocketSmoke.gameObject.SetActive(true);
+        _rocketSmoke.Clear();
         _rocketSmoke.transform.SetParent(_rocketSmokePosition);
         _rocketSmoke.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-
-
-        _rocketSmoke.Clear();
         _rocketSmoke.Play();
-        
+
         _aliveTime = 0;
 
         _projectileSpeed = _projectileInitialSpeed;
-
     }
 
     public override void UpdateProjectileLogic(float deltaTime)
@@ -185,13 +181,13 @@ public class Rocket : BaseProjectileLogic
 
     public override void DestroyProjectile()
     {
+        _rocketSmoke.transform.SetParent(null);
         _rocketSmoke.Stop();
 
         _explosion.transform.SetPositionAndRotation(transform.position + _direction * -0.2f, transform.rotation);
         _explosion.gameObject.SetActive(true);
         _explosion.Play();
 
-        _rocketSmoke.transform.SetParent(null);
 
         gameObject.SetActive(false);
 
