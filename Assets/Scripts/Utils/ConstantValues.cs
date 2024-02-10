@@ -19,6 +19,6 @@ public static class ConstantValues
     public const float RESPAWN_TIME = 1.5f; // Time to being respawned after dying
 
     public const int MAX_PLAYERS_PER_GAME = 4;
-    public const int DEFAULT_LIVES = 2;
+    public const int DEFAULT_LIVES = 3;
 
 }
