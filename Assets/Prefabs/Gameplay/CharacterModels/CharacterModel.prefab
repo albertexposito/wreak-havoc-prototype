@@ -346,9 +346,9 @@ GameObject:
   - component: {fileID: 857266206104394871}
   - component: {fileID: 7454651338656653577}
   - component: {fileID: 165505408252529153}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CharacterModel
-  m_TagString: Untagged
+  m_TagString: OcclusionElement
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

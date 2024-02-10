@@ -65,8 +65,7 @@ public class FirePit : MonoBehaviour
 
     public void DeactivateFirePit()
     {
-        Debug.LogError($"[FirePit] - Disabling FirePit! | _fireParticleSystem == null: {_fireParticleSystem == null} | _collider == null: {_collider == null} | _elements == null: {_elements == null}");
-        //Debug.Log($"[FirePit] - FirePit disabled!");
+        Debug.Log($"[FirePit] - FirePit disabled!");
 
 
         _firePitEnabled = false;
