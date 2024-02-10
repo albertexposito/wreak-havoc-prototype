@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 635455081890111663}
   - component: {fileID: 635455081890111660}
   - component: {fileID: 635455081890111661}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FirePit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -529,6 +529,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CFXR2 Firewall A
       objectReference: {fileID: 0}
+    - target: {fileID: 8172849020266659019, guid: 2af5562ce69fc2d448481a1587a352a5, type: 3}
+      propertyPath: clearBehavior
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8172849020266659020, guid: 2af5562ce69fc2d448481a1587a352a5, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
@@ -547,11 +551,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8172849020266659021, guid: 2af5562ce69fc2d448481a1587a352a5, type: 3}
       propertyPath: ShapeModule.m_Scale.x
-      value: 3
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 8172849020266659021, guid: 2af5562ce69fc2d448481a1587a352a5, type: 3}
       propertyPath: ShapeModule.m_Scale.y
-      value: 3
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 8172849020266659021, guid: 2af5562ce69fc2d448481a1587a352a5, type: 3}
       propertyPath: ShapeModule.m_Scale.z
@@ -559,7 +563,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8172849020266659021, guid: 2af5562ce69fc2d448481a1587a352a5, type: 3}
       propertyPath: ShapeModule.m_Position.z
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8172849020266659021, guid: 2af5562ce69fc2d448481a1587a352a5, type: 3}
       propertyPath: ShapeModule.m_Rotation.x

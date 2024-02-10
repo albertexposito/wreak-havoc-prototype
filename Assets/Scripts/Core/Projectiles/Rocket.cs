@@ -21,6 +21,8 @@ public class Rocket : BaseProjectileLogic
     [SerializeField] protected float _lifeTime = 2; // seconds
     private float _aliveTime;
 
+    [SerializeField] protected LayerMask _hitLayermask = 2; // seconds
+    
     [Header("Effects")]
     [SerializeField] protected ParticleSystem _rocketSmoke; // units per second
     [SerializeField] protected Transform _rocketSmokePosition; // units per second
@@ -78,7 +80,7 @@ public class Rocket : BaseProjectileLogic
 
     protected virtual void DetectCollision()
     {
-        Collider[] hits = Physics.OverlapSphere(_detectPosition.position, 0.5f);
+        Collider[] hits = Physics.OverlapSphere(_detectPosition.position, 0.5f, _hitLayermask);
 
         if (AreHitsValid(hits))
             OnProjectileHit(hits);

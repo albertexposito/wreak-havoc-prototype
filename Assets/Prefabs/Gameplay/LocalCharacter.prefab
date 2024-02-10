@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 7830600954956068344}
   - component: {fileID: 2692662616870232082}
   - component: {fileID: 7733319292483652567}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LocalCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   IsCharacterDead: 0
-  _maxHealth: 15
+  _maxHealth: 30
 --- !u!114 &7830600954956068344
 MonoBehaviour:
   m_ObjectHideFlags: 0

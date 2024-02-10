@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 8165727818663475535}
   - component: {fileID: 4797874030036847922}
   - component: {fileID: 4903933459773278711}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rocket Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -364,6 +364,9 @@ MonoBehaviour:
   _projectileInitialSpeed: 5
   _projectileAcceleration: 60
   _lifeTime: 2
+  _hitLayermask:
+    serializedVersion: 2
+    m_Bits: 896
   _rocketSmoke: {fileID: 2668206372178935438}
   _rocketSmokePosition: {fileID: 7012477554230242784}
   _explosion: {fileID: 1977306442318073808}
