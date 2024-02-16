@@ -38,7 +38,8 @@ public class SettingsUIHandler : MonoBehaviour
 
         Resolution[] resolutions = Screen.resolutions;
 
-        int currentRefreshRate = _currentResolution.refreshRate;
+        RefreshRate currentRefreshRate = _currentResolution.refreshRateRatio;
+        //int currentRefreshRate = _currentResolution.refreshRate;
 
         _filteredResolutions = new List<Resolution>();
         List<string> resolutionNames = new List<string>();
@@ -48,7 +49,7 @@ public class SettingsUIHandler : MonoBehaviour
         {
             Resolution resolution = resolutions[i];
 
-            if (resolution.refreshRate == currentRefreshRate)
+            if (resolution.refreshRateRatio.value == currentRefreshRate.value)
             {
                 _filteredResolutions.Add(resolution);
                 resolutionNames.Add(resolution.ToString());
@@ -107,13 +108,13 @@ public class SettingsUIHandler : MonoBehaviour
 
         if(_currentQualitySettings != _qualitySettingsToApply)
         {
-            QualitySettings.SetQualityLevel(_qualitySettingsToApply);
+            QualitySettings.SetQualityLevel(_qualitySettingsToApply, true);
             _currentQualitySettings = _qualitySettingsToApply;
         }
 
         if(!IsSameResolution(_currentResolution, _resolutionToApply))
         {
-            Screen.SetResolution(_resolutionToApply.width, _resolutionToApply.height, FullScreenMode.FullScreenWindow, _resolutionToApply.refreshRate);
+            Screen.SetResolution(_resolutionToApply.width, _resolutionToApply.height, FullScreenMode.FullScreenWindow, _resolutionToApply.refreshRateRatio);
             _currentResolution = _resolutionToApply;
         }
 

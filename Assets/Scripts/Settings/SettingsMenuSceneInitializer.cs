@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,9 +17,12 @@ public class SettingsMenuSceneInitializer : MonoBehaviour
     private void Start()
     {
         AsyncOperation ao = SceneManager.LoadSceneAsync(_gameManager.DEFAULT_STAGE_NAME, LoadSceneMode.Additive);
-        //ao.completed += OnLevelLoadedCallback;
+        ao.completed += OnLevelLoadedCallback;
     }
 
-
-
+    private void OnLevelLoadedCallback(AsyncOperation obj)
+    {
+        Scene loadedScene = SceneManager.GetSceneByName(_gameManager.DEFAULT_STAGE_NAME);
+        SceneManager.SetActiveScene(loadedScene);
+    }
 }
