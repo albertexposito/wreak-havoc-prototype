@@ -279,7 +279,7 @@
                 {
                     "name": "",
                     "id": "666b56e5-c27a-4964-a706-fdfad52ac6da",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -290,7 +290,7 @@
                 {
                     "name": "",
                     "id": "d5a4dd38-c242-4b9a-a5b0-be71588cb527",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
