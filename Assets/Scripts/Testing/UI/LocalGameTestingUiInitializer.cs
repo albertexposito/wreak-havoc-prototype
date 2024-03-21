@@ -14,7 +14,7 @@ public class LocalGameTestingUiInitializer : MonoBehaviour
         _gameInitializer.OnPlayersSpawned += AddCharacters;
     }
 
-    private void AddCharacters(List<Player> players)
+    private void AddCharacters(List<IPlayerIdentity> players)
     {
         foreach (Player player in players)
             _stateTestingUI.AddCharacter(player.CurrentCharacter);   

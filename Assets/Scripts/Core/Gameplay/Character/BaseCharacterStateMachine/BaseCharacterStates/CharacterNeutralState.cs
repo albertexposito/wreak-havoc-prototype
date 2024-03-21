@@ -13,6 +13,9 @@ public class CharacterNeutralState : BaseCharacterState
     private BaseMeleeAttack _meleeAttack;
     private DashAbility _dashAbility;
 
+    // TEMP
+    private BasePlayerCharacter _character;
+
     public CharacterNeutralState(BaseCharacterStateMachine stateMachine, BasePlayerCharacter baseCharacter) : base(stateMachine, baseCharacter)
     {
 
@@ -24,6 +27,8 @@ public class CharacterNeutralState : BaseCharacterState
         _rangedAttack = baseCharacter.RangedAttackController;
         _meleeAttack = baseCharacter.MeleeAttackController;
         _dashAbility = baseCharacter.DashAbility;
+
+        _character = baseCharacter;
     }
 
     public override void OnStateEnter()
@@ -35,7 +40,9 @@ public class CharacterNeutralState : BaseCharacterState
     public override void UpdateStateLogic()
     {
 
-        LocalPlayerGameplayInputData inputData = _inputHandler.GameplayInputData;
+        //LocalPlayerGameplayInputData inputData = _inputHandler.GameplayInputData;
+
+        LocalPlayerGameplayInputData inputData = _inputHandler != null ? _inputHandler.GameplayInputData : _character.InputData;
 
         _charController.PerformMovement(inputData.movementInput, inputData.rotationInput);
 

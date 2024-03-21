@@ -13,8 +13,8 @@ public class LocalGameManager : ScriptableObjectSingleton<LocalGameManager>, IMa
 
     [SerializeField] private Color[] _characterColors;
 
-    public List<Player> Players { get => _players; }
-    private List<Player> _players;
+    public List<IPlayerIdentity> Players { get => _players; }
+    private List<IPlayerIdentity> _players;
 
     private Player _winner;
 
@@ -37,7 +37,7 @@ public class LocalGameManager : ScriptableObjectSingleton<LocalGameManager>, IMa
 
         InitializeSingleton();
 
-        _players = new List<Player>(ConstantValues.MAX_PLAYERS_PER_GAME);
+        _players = new List<IPlayerIdentity>(ConstantValues.MAX_PLAYERS_PER_GAME);
     }
 
     #region CHARACTER SELECTION METHODS

@@ -11,17 +11,29 @@ public class GameplayCameraHandler : MonoBehaviour
 
     [SerializeField] private CinemachineVirtualCamera _virtualCamera;
     private CinemachineTargetGroup _targetGroup;
-    private LocalGameInitializer _gameInitializer;
+
+    [SerializeField] private GameObject _gameInitializerGameObject;
+    private IGameInitializer _gameInitializer;
 
     private void Awake()
     {
         _targetGroup = GetComponent<CinemachineTargetGroup>();
 
-        _gameInitializer = FindObjectOfType<LocalGameInitializer>();
+        // Use the gameObject to find the component, apparently you cant use 
+        // FindObjectOfType with an interface
+        if(_gameInitializerGameObject == null)
+        {
+            Debug.LogError($"[ERROR][CAMERA] - Set the GameInitializer GameObject in the GameplayCameraHandler!");
+            return;
+        }
+
+        _gameInitializer = _gameInitializerGameObject.GetComponent<IGameInitializer>();
 
         _gameInitializer.OnLevelLoaded += OnLevelLoaded;
         _gameInitializer.OnPlayersSpawned += OnPlayersSpawned;
     }
+
+    public void AddTransform(Transform transform) => AddTransformToTargetGroup(transform);
 
     private void OnLevelLoaded(StageComponents stageComponents)
     {
@@ -31,13 +43,18 @@ public class GameplayCameraHandler : MonoBehaviour
         _virtualCamera.ForceCameraPosition(stageCameraPosition.position, stageCameraPosition.rotation);
     }
 
-    private void OnPlayersSpawned(List<Player> players)
+    private void OnPlayersSpawned(List<IPlayerIdentity> players)
     {
         foreach (Player player in players)
         {
-            _targetGroup.AddMember(player.CurrentCharacter.transform, TARGET_GROUP_MEMBER_WEIGHT, TARGET_GROUP_MEMBER_RADIUS);
+            AddTransformToTargetGroup(player.transform);
             player.OnPlayerDied += OnPlayerDied;
         }
+    }
+
+    private void AddTransformToTargetGroup(Transform targetTransform)
+    {
+        _targetGroup.AddMember(targetTransform, TARGET_GROUP_MEMBER_WEIGHT, TARGET_GROUP_MEMBER_RADIUS);
     }
 
     private void OnPlayerDied(Player player)

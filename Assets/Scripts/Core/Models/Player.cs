@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IPlayerIdentity
 {
     public string id;
 
@@ -13,17 +13,25 @@ public class Player : MonoBehaviour
 
     public int PlayerIndex { get => _playerIndex; set => _playerIndex = value; }
     private int _playerIndex = -1;
-    
+
+    public bool IsReady => throw new NotImplementedException();
+
+
     public PlayerInput PlayerInput { get => _playerInput; }
     private PlayerInput _playerInput;
 
     public BasePlayerCharacter CurrentCharacter { get => _currentCharacter; }
     private BasePlayerCharacter _currentCharacter;
 
+    public event Action<string> OnNameChanged;
 
     public int CurrentLives { get => _lives; }
+
+
     public event Action<Player> OnPlayerDied;
-    public event Action<int, Player> OnPlayerLivesChange;
+    public event Action<int, IPlayerIdentity> OnPlayerLivesChange;
+    public event Action<bool> OnReadyStateChanged;
+
     private int _lives;
     
 

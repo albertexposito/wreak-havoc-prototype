@@ -77,48 +77,49 @@ public class LocalPlayerGameplayInputHandler : MonoBehaviour
 
     }
 
-    /// <summary>
-    /// Helper class to detect when an input has been pressed
-    /// </summary>
-    private class InputActionHandler
-    {
-        private InputAction _action;
 
-
-        private bool _active;
-
-        public bool IsActive(bool consumeInput)
-        {
-            bool isActive = _active;
-
-            if (consumeInput)
-                _active = false;
-
-            return isActive;
-        }
-
-        public InputActionHandler(InputAction action)
-        {
-            _action = action;
-            _action.performed += SetInputState;
-            _action.canceled += SetInputState;
-        }
-
-        private void SetInputState(InputAction.CallbackContext obj)
-        {
-            // Debug.Log($"{obj.action.name} - {obj.phase}");
-
-            switch (obj.phase)
-            {
-                case InputActionPhase.Performed: _active = true; break;
-                    //case InputActionPhase.Canceled: _active = false; break;
-            }
-        }
-    }
 
 }
 
 
+/// <summary>
+/// Helper class to detect when an input has been pressed
+/// </summary>
+public class InputActionHandler
+{
+    private InputAction _action;
+
+
+    private bool _active;
+
+    public bool IsActive(bool consumeInput)
+    {
+        bool isActive = _active;
+
+        if (consumeInput)
+            _active = false;
+
+        return isActive;
+    }
+
+    public InputActionHandler(InputAction action)
+    {
+        _action = action;
+        _action.performed += SetInputState;
+        _action.canceled += SetInputState;
+    }
+
+    private void SetInputState(InputAction.CallbackContext obj)
+    {
+        // Debug.Log($"{obj.action.name} - {obj.phase}");
+
+        switch (obj.phase)
+        {
+            case InputActionPhase.Performed: _active = true; break;
+                //case InputActionPhase.Canceled: _active = false; break;
+        }
+    }
+}
 
 public class GameplayInputActions
 {

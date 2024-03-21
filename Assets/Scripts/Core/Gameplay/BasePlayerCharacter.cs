@@ -16,6 +16,7 @@ public class BasePlayerCharacter : MonoBehaviour
     public CharacterModelHandler CharacterModelHandler { get => _characterModelHandler; }
     private CharacterModelHandler _characterModelHandler;
 
+    // TODO -> This should be in the player identity, regardless of local or online gameplay
     public LocalPlayerGameplayInputHandler PlayerInputHandler { get => _playerInputHandler; }
     private LocalPlayerGameplayInputHandler _playerInputHandler;
 
@@ -37,6 +38,10 @@ public class BasePlayerCharacter : MonoBehaviour
     public HealthHandler HealthHandler { get => _healthHandler; }
     private HealthHandler _healthHandler;
 
+    // TEMP
+    public LocalPlayerGameplayInputData InputData { get => _inputData; }
+    private LocalPlayerGameplayInputData _inputData;
+
     private void Awake()
     {
         _characterController = GetComponent<BaseCharacterController>();
@@ -53,13 +58,14 @@ public class BasePlayerCharacter : MonoBehaviour
 
         // STATE MACHINE
         _characterStateMachine = GetComponent<BaseCharacterStateMachine>();
-        _characterStateMachine.InitializeStateMachine(this);
     }
 
     public void InitializePlayer(Player localPlayer)
     {
         if(localPlayer != null && localPlayer.PlayerInput)
             _playerInputHandler.Initialize(localPlayer.PlayerInput);
+
+        _characterStateMachine.InitializeStateMachine(this);
 
         _characterModelHandler.SetMeshColor(localPlayer != null ? localPlayer.PlayerIndex : 0);
 
@@ -72,6 +78,8 @@ public class BasePlayerCharacter : MonoBehaviour
         _healthHandler.OnEntityDied.AddListener(PlayerDied);
 
     }
+
+
 
     public void OnDamageTaken(DamageData damageData)
     {
@@ -110,10 +118,16 @@ public class BasePlayerCharacter : MonoBehaviour
     }
 
     // This method is called before update and gets the input
+    // TODO this should be done in the player identity, not the character
     public void ProcessInput()
     {
         if(_playerInputHandler.Initialized)
             _playerInputHandler.ProcessInput();
+    }
+
+    public void SetInput(LocalPlayerGameplayInputData inputData)
+    {
+        _inputData = inputData;
     }
 
     // This method is in charge of updating the position of the character
@@ -121,6 +135,15 @@ public class BasePlayerCharacter : MonoBehaviour
     // It should ba calling a Character controller
     public void CharacterUpdate()
     {
+        // TODO This is for testing, remove this
+        if(_characterStateMachine == null)
+        {
+            _characterController.PerformMovement(_inputData.movementInput, _inputData.rotationInput);
+
+            return;
+        }
+
+
         _characterStateMachine.UpdateStateMachineLogic();
     }
 

@@ -16,7 +16,7 @@ public class PlayerCharacterUIHandler : MonoBehaviour
         _gameInitializer.OnPlayersSpawned += OnPlayerCharactersSpawned;
     }
 
-    private void OnPlayerCharactersSpawned(List<Player> players)
+    private void OnPlayerCharactersSpawned(List<IPlayerIdentity> players)
     {
         
         for(int i = 0; i < _characterUIArray.Length; i++)

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerCharacterUI : MonoBehaviour
 {
 
-    private Player _player;
+    private IPlayerIdentity _player;
     private BasePlayerCharacter _character;
 
     [SerializeField] private TMP_Text _playerName;
@@ -22,7 +22,7 @@ public class PlayerCharacterUI : MonoBehaviour
     [SerializeField] private Color _dashAvailableColor;
     [SerializeField] private Color _dashUnavailableColor;
 
-    public void SetPlayer(Player player)
+    public void SetPlayer(IPlayerIdentity player)
     {
 
         _player = player;
@@ -40,7 +40,7 @@ public class PlayerCharacterUI : MonoBehaviour
         Debug.Log($"[PlayerCharacterUI] - Setting up player: {player.PlayerName} | _character: {(_character == null ? "null" : "NOT null")} | _player: {(_player == null ? "null" : "NOT null")}");
     }
 
-    private void SetupLivesContainer(Player player)
+    private void SetupLivesContainer(IPlayerIdentity player)
     {
         _remainingLives = _livesContainer.GetComponentsInChildren<Image>();
 
@@ -74,7 +74,7 @@ public class PlayerCharacterUI : MonoBehaviour
         _healthBarContainer.fillAmount = hpPercentage;
     }
 
-    private void UpdateLivesContainer(int remainingLives, Player player)
+    private void UpdateLivesContainer(int remainingLives, IPlayerIdentity player)
     {
         for (int i = 0; i < _remainingLives.Length; i++)
             _remainingLives[i].gameObject.SetActive( i <= remainingLives - 1 );

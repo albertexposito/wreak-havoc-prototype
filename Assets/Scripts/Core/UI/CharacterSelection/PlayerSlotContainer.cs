@@ -21,12 +21,12 @@ public class PlayerSlotContainer : MonoBehaviour
         
     }
 
-    public void AddPlayer(Player player)
+    public void AddPlayer(IPlayerIdentity player)
     {
         _playerSlots[player.PlayerIndex].SetPlayerToSlot(player);
     }
 
-    public void RemovePlayer(Player player, int oldIndex)
+    public void RemovePlayer(IPlayerIdentity player, int oldIndex)
     {
         _playerSlots[oldIndex].RemovePlayerFromSlot(player);
     }

@@ -98,7 +98,7 @@ public class Rocket : BaseProjectileLogic
 
     protected virtual void OnProjectileHit(Collider[] collider)
     {
-        bool hasHitAnEntity = false;
+        //bool hasHitAnEntity = false; // Not used
 
         Collider[] hits = Physics.OverlapSphere(_detectPosition.position, 3f);
 
@@ -128,7 +128,7 @@ public class Rocket : BaseProjectileLogic
 
 
                 damageable.DealDamage(damageData);
-                hasHitAnEntity = true;
+                //hasHitAnEntity = true;
             }
         }
 

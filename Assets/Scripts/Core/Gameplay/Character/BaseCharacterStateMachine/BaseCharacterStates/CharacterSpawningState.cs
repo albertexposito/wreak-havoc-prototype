@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class CharacterSpawningState : BaseCharacterState
 {
@@ -13,6 +14,7 @@ public class CharacterSpawningState : BaseCharacterState
     // The next time it will be done by the state.
     // TODO: consider adding a Respawn state
     private bool _spawnedOnce; 
+
 
     public CharacterSpawningState(BaseCharacterStateMachine stateMachine, BasePlayerCharacter baseCharacter) : base(stateMachine, baseCharacter)
     {
@@ -37,7 +39,10 @@ public class CharacterSpawningState : BaseCharacterState
     {
         base.UpdateStateLogic();
 
-        LocalPlayerGameplayInputData inputData = _inputHandler.GameplayInputData;
+        //LocalPlayerGameplayInputData inputData = _inputHandler.GameplayInputData;
+
+        LocalPlayerGameplayInputData inputData = _inputHandler != null ? _inputHandler.GameplayInputData : _playerCharacter.InputData;
+
 
         _charController.PerformMovement(Vector3.zero, inputData.rotationInput);
 

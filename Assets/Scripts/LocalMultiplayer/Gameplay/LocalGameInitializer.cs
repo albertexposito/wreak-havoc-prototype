@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LocalGameInitializer : MonoBehaviour
+public class LocalGameInitializer : MonoBehaviour, IGameInitializer
 {
 
     [SerializeField] private LocalGameManager _gameManager;
@@ -14,7 +14,7 @@ public class LocalGameInitializer : MonoBehaviour
     private LocalGameplayController _localGameplayController;
 
     public event Action<StageComponents> OnLevelLoaded;
-    public event Action<List<Player>> OnPlayersSpawned;
+    public event Action<List<IPlayerIdentity>> OnPlayersSpawned;
 
     private void Awake()
     {

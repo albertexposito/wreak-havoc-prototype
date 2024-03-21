@@ -10,9 +10,9 @@ public class LocalCharacterSpawner : MonoBehaviour
 
     [SerializeField] private BasePlayerCharacter _playerCharacterPrefab;
 
-    public void InstantiatePlayers(List<Player> players/*, SpawnPoint[] spawnPoints*/)
+    public void InstantiatePlayers(List<IPlayerIdentity> players/*, SpawnPoint[] spawnPoints*/)
     {
-        foreach (Player player in players)
+        foreach (IPlayerIdentity player in players)
         {
             BasePlayerCharacter playerChar = InstantiateCharacter(/*spawnPoints[player.playerIndex]*/);
             player.SetCharacter(playerChar);
